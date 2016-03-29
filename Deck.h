@@ -11,7 +11,7 @@ private:
 public:
   void SetNum(int n) {number = n;}
   void SetNext(Node *a) {next = a;}
-  void SetSuit(string n) {suit n;}
+  void SetSuit(string n) {suit = n;}
   int Num() {return number;}
   Node *Next() {return next;}
   string Suit() {return suit;}
@@ -36,7 +36,7 @@ List::List() {
         temp->SetSuit("C");
       }
       else if (i==1){
-        temp->SuitSuit("D");
+        temp->SetSuit("D");
       }
       else if (i==2){
         temp->SetSuit("S");
