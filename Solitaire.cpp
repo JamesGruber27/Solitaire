@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-  List deck = new List();
+  List deck;
   deck.Print();
   return 0;
 }
