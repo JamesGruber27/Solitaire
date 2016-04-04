@@ -5,6 +5,7 @@
 #include <random>
 #include <vector>
 #include "Deck.h"
+#include "Draw.h"
 using namespace std;
 
 int main() {
@@ -64,6 +65,16 @@ int main() {
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 	shuffle(shuffler.begin(), shuffler.end(), default_random_engine(seed));
 	List deck(shuffler);
+
+	cout << "Here is your Deck: " << endl;
 	deck.Print();
+	cout << endl << "How many Cards would you like to draw? ";
+	int n;
+	cin >> n;
+	cout << endl;
+
+	for (int i = 0; i < n; i++) {
+		deck = Draw(deck);
+	}
 	return 0;
 }
