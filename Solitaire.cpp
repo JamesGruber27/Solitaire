@@ -1,9 +1,3 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <chrono>
-#include <random>
-#include <vector>
 #include "Deck.h"
 using namespace std;
 
@@ -61,9 +55,34 @@ int main() {
 	shuffler.push_back("11H");
 	shuffler.push_back("12H");
 	shuffler.push_back("13C");
+    
+    //Shuffle the 52-long vector
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 	shuffle(shuffler.begin(), shuffler.end(), default_random_engine(seed));
-	List deck(shuffler);
-	deck.Print();
-	return 0;
+    
+    //Creating the 52-card deck object
+	List* deck = new List(shuffler);
+    
+    //Greetings
+    cout << "Welcome to Solitaire! Here is your starting board." << endl;
+    
+    //Printing the contents of the deck
+	deck->Print();
+    
+    //Create columns
+    vector<Node*> col1 = deck->createColumn(1);
+    vector<Node*> col2 = deck->createColumn(2);
+    vector<Node*> col3 = deck->createColumn(3);
+    vector<Node*> col4 = deck->createColumn(4);
+    vector<Node*> col5 = deck->createColumn(5);
+    vector<Node*> col6 = deck->createColumn(6);
+    vector<Node*> col7 = deck->createColumn(7);
+    
+    
+    //Print columns
+    deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+    
+    //Print deck again to show you that the correct cards were taken out
+    deck->Print();
+    return 0;
 }
