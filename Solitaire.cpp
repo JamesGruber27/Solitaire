@@ -95,14 +95,17 @@ int main() {
     deck->turnOver(col7);
 
 
-	cout << "first 3 cards: " << endl;
+	cout << "Would you like a card? 0 is yes, 1 is no " << endl;
 	Node *temp;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
+	int DDDRAW = 1;
+	cin >> DDDRAW;
+	while (DDDRAW = 0) {
+		temp = deck->Draw();
+		cout << temp->Num() << temp->Suit() << endl;
+		cin.clear();
+		cin.ignore();
+		cin >> DDDRAW;
+	}
     //NEED TO PUT A WHILE LOOP
     return 0;
 }

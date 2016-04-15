@@ -38,6 +38,7 @@ public:
     void add(Node* card, vector<Node*> tableau);
     void turnOver(vector<Node*> tableau);
 	Node* Draw();
+	int Length();
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -354,6 +355,13 @@ void List::turnOver(vector<Node*> tableau){
 
 Node* List::Draw() {
 	Node *temp = head;
+	if (temp = NULL) {
+		return;
+	}
+	int j = this->Length();
+	while (Loc > j) {
+		Loc = Loc - j;
+	}
 	for (int i = 0; i<Loc; i++) {
 		temp = temp->Next();
 	}
@@ -361,3 +369,12 @@ Node* List::Draw() {
 	return temp;
 }
 
+int List::Length() {
+	int j = 0; 
+	Node* temp = head;
+	while (temp != NULL) {
+		j++;
+		temp = temp->Next();
+	}
+	return j;
+}
