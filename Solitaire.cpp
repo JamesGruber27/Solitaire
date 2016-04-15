@@ -1,6 +1,13 @@
 #include "Deck.h"
 using namespace std;
 
+List* DrawCard(List* deck) {
+	deck->Draw();
+	Node* temp = deck->DCard();
+	cout << temp->Num() << temp->Suit() << endl << endl;
+	return deck;
+}
+
 int main() {
 	vector<string> shuffler;
 	shuffler.push_back("1C");
@@ -55,19 +62,37 @@ int main() {
 	shuffler.push_back("11H");
 	shuffler.push_back("12H");
 	shuffler.push_back("13C");
-    
-    //Shuffle the 52-long vector
+
+	//Shuffle the 52-long vector
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 	shuffle(shuffler.begin(), shuffler.end(), default_random_engine(seed));
-    
-    //Creating the 52-card deck object
+
+	//Creating the 52-card deck object
 	List* deck = new List(shuffler);
-    
-    //Greetings
-    cout << "Welcome to Solitaire! Here is your starting board." << endl;
-    
-    //Printing the contents of the deck
+
+	//Greetings
+	cout << "Welcome to Solitaire! Here is your starting board." << endl;
+
+	//Printing the contents of the deck
 	deck->Print();
+
+	//Create columns of the tableau
+	vector<Node*> col1 = deck->createColumn(1);
+	vector<Node*> col2 = deck->createColumn(2);
+	vector<Node*> col3 = deck->createColumn(3);
+	vector<Node*> col4 = deck->createColumn(4);
+	vector<Node*> col5 = deck->createColumn(5);
+	vector<Node*> col6 = deck->createColumn(6);
+	vector<Node*> col7 = deck->createColumn(7);
+	int initCount1 = 1, initCount2 = 2, initCount3 = 3, initCount4 = 4, initCount5 = 5, initCount6 = 6, initCount7 = 7;
+
+
+	//Print columns
+	deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+
+	//Print deck again to show you that the correct cards were taken out
+	deck->Print();
+<<<<<<< HEAD
     
     //Create columns of the tableau
     vector<Node*> col1 = deck->createColumn(1);
@@ -98,16 +123,28 @@ int main() {
     deck->turnOver(col5);
     deck->turnOver(col6);
     deck->turnOver(col7);
+=======
+>>>>>>> 35d5175305d7c042784d096377c294ae001ffc64
 
+	deck->turnOver(col1);
+	deck->turnOver(col2);
+	deck->turnOver(col3);
+	deck->turnOver(col4);
+	deck->turnOver(col5);
+	deck->turnOver(col6);
+	deck->turnOver(col7);
 
-	cout << "first 3 cards: " << endl;
-	Node *temp;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
-	temp = deck->Draw();
-	cout << temp->Num() << temp->Suit() << endl;
-    //NEED TO PUT A WHILE LOOP
-    return 0;
+	//The Game should take place here
+	while (true) {
+		int choice;
+		cin >> choice;
+		if (choice == 1) {
+			deck = DrawCard(deck);
+		}
+		else {
+			break;
+		}
+	}
+	//NEED TO PUT A WHILE LOOP
+	return 0;
 }
