@@ -37,6 +37,7 @@ public:
     vector<Node*> createColumn(int size);
     void add(Node* card, vector<Node*> tableau);
     void turnOver(vector<Node*> tableau);
+    void addFound(Node* card, vector<Node*> found);
 	Node* Draw();
 };
 
@@ -107,11 +108,13 @@ void List::Print() {
 
 //CREATE COLUMN - creates the columns
 vector<Node*> List::createColumn(int n){
-    
-    //Creates a vector that contains the Node pointers of specified size
-    Node* current = head;
     vector<Node*> arr;
     
+    if (n == 0){
+        return arr;
+    }
+    
+    Node* current = head;
     for (int i = 0; i < n; i++){
         if (i == n - 1){
             current->SetFaceup(true); //places the last card of each column faceup
@@ -119,9 +122,10 @@ vector<Node*> List::createColumn(int n){
         arr.push_back(current);
         current = current->Next();
     }
+    
     head = current;//Removes the first n nodes,they're in the vector list now, moves linked list head
     return arr;
-    }
+}
 
 //PRINTCOL - prints the tableau
 void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7){
@@ -361,3 +365,10 @@ Node* List::Draw() {
 	return temp;
 }
 
+void List::addFound(Node* card, vector<Node*> found){
+    if (found.empty() && card->Num() == 1)
+        found.push_back(card);
+    else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num()+1)){
+        found.push_back(card);
+    }
+}

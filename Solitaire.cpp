@@ -79,6 +79,11 @@ int main() {
     vector<Node*> col7 = deck->createColumn(7);
     int initCount1 = 1, initCount2 = 2, initCount3 = 3, initCount4 = 4, initCount5 = 5, initCount6 = 6, initCount7 = 7;
     
+    //Create columns of the foundation
+    vector<Node*> found1 = deck->createColumn(0);
+    vector<Node*> found2 = deck->createColumn(0);
+    vector<Node*> found3 = deck->createColumn(0);
+    vector<Node*> found4 = deck->createColumn(0);
     
     //Print columns
     deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
