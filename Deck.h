@@ -28,6 +28,7 @@ public:
 class List {
 private:
 	Node *head;
+	int Loc;
 
 public:
 	List(vector<string> cards);
@@ -36,6 +37,7 @@ public:
     vector<Node*> createColumn(int size);
     void add(Node* card, vector<Node*> tableau);
     void turnOver(vector<Node*> tableau);
+	Node* Draw();
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -43,6 +45,7 @@ public:
 //CONSTRUCTOR - creates a 52 card deck
 List::List(vector<string> cards) {
 	head = new Node();
+	Loc = 0;
 	Node* temp = head;
 	for (int i = 0; i < 52; i++) {
 		string suit = cards[i];
@@ -348,3 +351,13 @@ void List::turnOver(vector<Node*> tableau){
             tableau.back()->SetFaceup(true);
         }
 }
+
+Node* List::Draw() {
+	Node *temp = head;
+	for (int i = 0; i<Loc; i++) {
+		temp = temp->Next();
+	}
+	Loc++;
+	return temp;
+}
+

@@ -94,6 +94,15 @@ int main() {
     deck->turnOver(col6);
     deck->turnOver(col7);
 
+
+	cout << "first 3 cards: " << endl;
+	Node *temp;
+	temp = deck->Draw();
+	cout << temp->Num() << temp->Suit() << endl;
+	temp = deck->Draw();
+	cout << temp->Num() << temp->Suit() << endl;
+	temp = deck->Draw();
+	cout << temp->Num() << temp->Suit() << endl;
     //NEED TO PUT A WHILE LOOP
     return 0;
 }
