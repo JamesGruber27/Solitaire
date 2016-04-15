@@ -75,11 +75,11 @@ List::List(vector<string> cards) {
 	}
 }
 
-//PRINT - prints the contents of the deck, function doesn't work for deck after the start
 void List::Print() {
 	Node *temp = head;
 	cout << "\nCurrent deck (top to bottom): \n" << endl;
-	for (int i = 0; i < 52; i++) {
+	cout << this->Length();
+	for (int i = 0; i < this->Length() - 1; i++) {
 		if (temp->Num() == 1) {
 			cout << "A";
 		}
