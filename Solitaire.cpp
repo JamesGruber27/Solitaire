@@ -1,6 +1,12 @@
-
 #include "Deck.h"
 using namespace std;
+
+List* DrawCard(List* deck) {
+	deck->Draw();
+	Node* temp = deck->DCard();
+	cout << temp->Num() << temp->Suit() << endl << endl;
+	return deck;
+}
 
 int main() {
 	vector<string> shuffler;
@@ -95,21 +101,15 @@ int main() {
 	deck->turnOver(col6);
 	deck->turnOver(col7);
 
-
-	cout << "Would you like a card? 0 is yes, 1 is no " << endl;
-	Node *temp;
-	int DRAW = 1;
-	cin >> DRAW;
+	//The Game should take place here
 	while (true) {
-		if (DRAW == 1) {
-			break;
+		int choice;
+		cin >> choice;
+		if (choice == 1) {
+			deck = DrawCard(deck);
 		}
-		else if (DRAW == 0) {
-			temp = deck->Draw();
-			cout << temp->Num() << temp->Suit() << endl << endl;
-			cin.clear();
-			cin.ignore();
-			cin >> DRAW;
+		else {
+			break;
 		}
 	}
 	//NEED TO PUT A WHILE LOOP

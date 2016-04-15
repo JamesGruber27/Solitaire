@@ -29,6 +29,7 @@ class List {
 private:
 	Node *head;
 	int Loc;
+	Node *DrawnCard;
 
 public:
 	List(vector<string> cards);
@@ -37,8 +38,9 @@ public:
 	vector<Node*> createColumn(int size);
 	void add(Node* card, vector<Node*> tableau);
 	void turnOver(vector<Node*> tableau);
-	Node* Draw();
+	void Draw();
 	int Length();
+	Node* DCard() { return DrawnCard; }
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -353,7 +355,7 @@ void List::turnOver(vector<Node*> tableau) {
 	}
 }
 
-Node* List::Draw() {
+void List::Draw() {
 	Node *temp = head;
 	int j = this->Length();
 	if (Loc == j) {
@@ -363,7 +365,8 @@ Node* List::Draw() {
 		temp = temp->Next();
 	}
 	Loc++;
-	return temp;
+	DrawnCard = temp;
+	return;
 }
 
 int List::Length() {
