@@ -34,6 +34,13 @@ private:
 public:
 	List(vector<string> cards);
 	void Print();
+<<<<<<< HEAD
+    void PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7);
+    vector<Node*> createColumn(int size);
+    void add(Node* card, vector<Node*> tableau);
+    void turnOver(vector<Node*> tableau);
+    void addFound(Node* card, vector<Node*> found);
+=======
 	void PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7);
 	vector<Node*> createColumn(int size);
 	vector<Node*> add(Node* card, vector<Node*> tableau);
@@ -41,6 +48,7 @@ public:
 	void Draw();
 	int Length();
 	Node* DCard() { return DrawnCard; }
+>>>>>>> 35d5175305d7c042784d096377c294ae001ffc64
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -490,6 +498,26 @@ void List::Print() {
 }
 
 //CREATE COLUMN - creates the columns
+<<<<<<< HEAD
+vector<Node*> List::createColumn(int n){
+    vector<Node*> arr;
+    
+    if (n == 0){
+        return arr;
+    }
+    
+    Node* current = head;
+    for (int i = 0; i < n; i++){
+        if (i == n - 1){
+            current->SetFaceup(true); //places the last card of each column faceup
+        }
+        arr.push_back(current);
+        current = current->Next();
+    }
+    
+    head = current;//Removes the first n nodes,they're in the vector list now, moves linked list head
+    return arr;
+=======
 vector<Node*> List::createColumn(int n) {
 
 	//Creates a vector that contains the Node pointers of specified size
@@ -505,6 +533,7 @@ vector<Node*> List::createColumn(int n) {
 	}
 	head = current;//Removes the first n nodes,they're in the vector list now, moves linked list head
 	return arr;
+>>>>>>> 35d5175305d7c042784d096377c294ae001ffc64
 }
 
 //PRINTCOL - prints the tableau
@@ -750,6 +779,15 @@ void List::Draw() {
 	return;
 }
 
+<<<<<<< HEAD
+void List::addFound(Node* card, vector<Node*> found){
+    if (found.empty() && card->Num() == 1)
+        found.push_back(card);
+    else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num()+1)){
+        found.push_back(card);
+    }
+}
+=======
 int List::Length() {
 	int j = 0;
 	Node* temp = head;
@@ -759,3 +797,4 @@ int List::Length() {
 	}
 	return j;
 }
+>>>>>>> 35d5175305d7c042784d096377c294ae001ffc64
