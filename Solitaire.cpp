@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Deck.h"
 using namespace std;
 
@@ -6,6 +7,11 @@ List* DrawCard(List* deck) {
 	Node* temp = deck->DCard();
 	cout << temp->Num() << temp->Suit() << endl << endl;
 	return deck;
+}
+
+vector<Node*> MoveDecktoTab(List* deck, vector<Node*> col1) {
+	col1 = deck->add(deck->DCard(), col1);
+	return col1;
 }
 
 int main() {
@@ -107,10 +113,16 @@ int main() {
 		cin >> choice;
 		if (choice == 1) {
 			deck = DrawCard(deck);
+			continue;
+		}
+		else if (choice == 2) {
+			col1 = MoveDecktoTab(deck, col1);
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else {
 			break;
 		}
+		deck->Print();
 	}
 	//NEED TO PUT A WHILE LOOP
 	return 0;
