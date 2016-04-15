@@ -69,7 +69,7 @@ int main() {
     //Printing the contents of the deck
 	deck->Print();
     
-    //Create columns
+    //Create columns of the tableau
     vector<Node*> col1 = deck->createColumn(1);
     vector<Node*> col2 = deck->createColumn(2);
     vector<Node*> col3 = deck->createColumn(3);
@@ -77,6 +77,7 @@ int main() {
     vector<Node*> col5 = deck->createColumn(5);
     vector<Node*> col6 = deck->createColumn(6);
     vector<Node*> col7 = deck->createColumn(7);
+    int initCount1 = 1, initCount2 = 2, initCount3 = 3, initCount4 = 4, initCount5 = 5, initCount6 = 6, initCount7 = 7;
     
     
     //Print columns
@@ -84,5 +85,15 @@ int main() {
     
     //Print deck again to show you that the correct cards were taken out
     deck->Print();
+    
+    deck->turnOver(col1);
+    deck->turnOver(col2);
+    deck->turnOver(col3);
+    deck->turnOver(col4);
+    deck->turnOver(col5);
+    deck->turnOver(col6);
+    deck->turnOver(col7);
+
+    //NEED TO PUT A WHILE LOOP
     return 0;
 }

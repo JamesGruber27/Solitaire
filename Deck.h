@@ -34,7 +34,10 @@ public:
 	void Print();
     void PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7);
     vector<Node*> createColumn(int size);
+    void add(Node* card, vector<Node*> tableau);
+    void turnOver(vector<Node*> tableau);
 };
+
 //OUT-OF-LINE FUNCTIONS
 
 //CONSTRUCTOR - creates a 52 card deck
@@ -324,4 +327,24 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
             cout << "\t\t\t\t";
         }
     }
+}
+
+//WE NEED TO MAKE IT SO THAT THE GUI IS ACTIVATED HERE
+//NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
+void List::add(Node* card, vector<Node*> tableau){
+    if ((tableau.back()->Suit() == "C" || "S") && (card->Suit() == "D" || "H") && (tableau.back()->Num() == (card->Num()+1))){
+        tableau.push_back(card);
+    }
+    else if ((tableau.back()->Suit() == "D" || "H") && (card->Suit() == "C" || "S") && (tableau.back()->Num() == card->Num()+1)){
+        tableau.push_back(card);
+    }
+    else {
+        cout << "Invalid move." << endl;
+    }
+}
+
+void List::turnOver(vector<Node*> tableau){
+        if (tableau.back()->Faceup() == false){
+            tableau.back()->SetFaceup(true);
+        }
 }
