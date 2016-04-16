@@ -34,13 +34,13 @@ private:
 public:
 	List(vector<string> cards);
 	void Print();
-	void addFound(Node* card, vector<Node*> found);
 	void PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7);
 	vector<Node*> createColumn(int size);
 	vector<Node*> add(Node* card, vector<Node*> tableau);
 	void turnOver(vector<Node*> tableau);
 	void Draw();
 	int Length();
+	void addFound(Node* card, vector<Node*> found);
 	Node* DCard() { return DrawnCard; }
 };
 
@@ -382,4 +382,10 @@ int List::Length() {
 	return j;
 }
 
-
+void List::addFound(Node* card, vector<Node*> found) {
+	if (found.empty() && card->Num() == 1)
+		found.push_back(card);
+	else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num() + 1)) {
+		found.push_back(card);
+	}
+}

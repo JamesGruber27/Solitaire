@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Deck.h"
 using namespace std;
 
