@@ -1,10 +1,8 @@
-#include "Deck.h"
+##include "Deck.h"
 using namespace std;
 
 List* DrawCard(List* deck) {
 	deck->Draw();
-	Node* temp = deck->DCard();
-	cout << temp->Num() << temp->Suit() << endl;
 	return deck;
 }
 
@@ -103,6 +101,12 @@ int main() {
 
 	//The Game should take place here
 	while (true) {
+		if (deck->DCard() != NULL) {
+			cout << "Currently drawn card: " << deck->DCard()->Num() << deck->DCard()->Suit();
+		}
+		else {
+			cout << "No card drawn";
+		}
 		int choice;
 		cin >> choice;
 		if (choice == 1) {
