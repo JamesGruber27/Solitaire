@@ -1,4 +1,4 @@
-##include "Deck.h"
+#include "Deck.h"
 using namespace std;
 
 List* DrawCard(List* deck) {
@@ -108,8 +108,27 @@ int main() {
 			cout << "No card drawn";
 		}
 		int choice;
+		cout << endl << "Enter 999 for options" << endl;
 		cin >> choice;
-		if (choice == 1) {
+		if (choice == 999) {
+			cout << endl << "1 - Draw a card" << endl;
+			cout << "2 - Attempts to add the drawn card to the first column" << endl;
+			cout << "3 - Attempts to add the drawn card to the second column" << endl;
+			cout << "4 - Attempts to add the drawn card to the third column" << endl;
+			cout << "5 - Attempts to add the drawn card to the fourth column" << endl;
+			cout << "6 - Attempts to add the drawn card to the fifth column" << endl;
+			cout << "7 - Attempts to add the drawn card to the sixth column" << endl;
+			cout << "8 - Attempts to add the drawn card to the seventh column" << endl;
+			cout << "9 - Move cards from Column 1" << endl;
+			cout << "10 - Move cards from Column 2" << endl;
+			cout << "11 - Move cards from Column 3" << endl;
+			cout << "12 - Move cards from Column 4" << endl;
+			cout << "13 - Move cards from Column 5" << endl;
+			cout << "14 - Move cards from Column 6" << endl;
+			cout << "15 - Move cards from Column 7" << endl;
+			continue;
+		}
+		else if (choice == 1) {
 			deck = DrawCard(deck);
 			cin.clear();
 			continue;
@@ -120,7 +139,6 @@ int main() {
 			if (col1.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 3) {
 			vector<Node*> temp = col2;
@@ -128,7 +146,6 @@ int main() {
 			if (col2.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 4) {
 			vector<Node*> temp = col3;
@@ -136,7 +153,6 @@ int main() {
 			if (col3.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 5) {
 			vector<Node*> temp = col4;
@@ -144,7 +160,6 @@ int main() {
 			if (col4.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 6) {
 			vector<Node*> temp = col5;
@@ -152,7 +167,6 @@ int main() {
 			if (col5.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 7) {
 			vector<Node*> temp = col6;
@@ -160,7 +174,6 @@ int main() {
 			if (col6.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else if (choice == 8) {
 			vector<Node*> temp = col7;
@@ -168,12 +181,377 @@ int main() {
 			if (col7.size() > temp.size()) {
 				deck = deck->RemoveCard(deck->DCard());
 			}
-			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 9) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col1;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col1.size() - num; i++) {
+				nonmoving.push_back(col1.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col1.at(i + nonmoving.size()));
+			}
+			col1 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 10) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col2;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col2.size() - num; i++) {
+				nonmoving.push_back(col2.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col2.at(i + nonmoving.size()));
+			}
+			col2 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 11) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col3;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col3.size() - num; i++) {
+				nonmoving.push_back(col3.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col3.at(i + nonmoving.size()));
+			}
+			col3 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 12) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col4;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col4.size() - num; i++) {
+				nonmoving.push_back(col4.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col4.at(i + nonmoving.size()));
+			}
+			col4 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 13) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col5;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col5.size() - num; i++) {
+				nonmoving.push_back(col5.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col5.at(i + nonmoving.size()));
+			}
+			col5 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 14) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col6;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col6.size() - num; i++) {
+				nonmoving.push_back(col6.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col6.at(i + nonmoving.size()));
+			}
+			col6 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
+			else if (col == 7) {
+				col7 = deck->ColtoCol(moving, col7);
+			}
+		}
+		else if (choice == 15) {
+			cout << "How many cards would you like to move?";
+			int num = 0;
+			cin >> num;
+			vector<Node*> colFrom, temp;
+			colFrom = col7;
+
+			//check that this amount of cards exist
+			for (int i = 0; i < colFrom.size(); i++) {
+				if (colFrom.at(i)->Faceup()) {
+					temp.push_back(colFrom.at(i));
+				}
+			}
+			if (num > temp.size()) {
+				cout << "Too many!" << endl;
+				continue;
+			}
+
+
+			//split moving cards from non-moving cards
+			vector<Node*> moving, nonmoving;
+			for (int i = 0; i < col7.size() - num; i++) {
+				nonmoving.push_back(col7.at(i));
+			}
+			for (int i = 0; i < num; i++) {
+				moving.push_back(col7.at(i + nonmoving.size()));
+			}
+			col7 = nonmoving;
+
+			cout << "...And to which column?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 2) {
+				col2 = deck->ColtoCol(moving, col2);
+			}
+			else if (col == 3) {
+				col3 = deck->ColtoCol(moving, col3);
+			}
+			else if (col == 4) {
+				col4 = deck->ColtoCol(moving, col4);
+			}
+			else if (col == 5) {
+				col5 = deck->ColtoCol(moving, col5);
+			}
+			else if (col == 6) {
+				col6 = deck->ColtoCol(moving, col6);
+			}
+			else if (col == 1) {
+				col1 = deck->ColtoCol(moving, col1);
+			}
 		}
 		else {
 			break;
 		}
+		deck->turnOver(col1);
+		deck->turnOver(col2);
+		deck->turnOver(col3);
+		deck->turnOver(col4);
+		deck->turnOver(col5);
+		deck->turnOver(col6);
+		deck->turnOver(col7);
+		deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		deck->Print();
+
 	}
 	//NEED TO PUT A WHILE LOOP
 	return 0;

@@ -43,6 +43,7 @@ public:
 	void addFound(Node* card, vector<Node*> found);
 	Node* DCard() { return DrawnCard; }
 	List* RemoveCard(Node* card);
+	vector<Node*> ColtoCol(vector<Node*> moving, vector<Node*> adding);
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -162,6 +163,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col1.at(i)->Num();
 			}
 			cout << col1.at(i)->Suit();
+			if (col1.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col2.size() > i) {
@@ -181,6 +188,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col2.at(i)->Num();
 			}
 			cout << col2.at(i)->Suit();
+			if (col2.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col3.size() > i) {
@@ -200,6 +213,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col3.at(i)->Num();
 			}
 			cout << col3.at(i)->Suit();
+			if (col3.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col4.size() > i) {
@@ -219,6 +238,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col4.at(i)->Num();
 			}
 			cout << col4.at(i)->Suit();
+			if (col4.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col5.size() > i) {
@@ -238,6 +263,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col5.at(i)->Num();
 			}
 			cout << col5.at(i)->Suit();
+			if (col5.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col6.size() > i) {
@@ -257,6 +288,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col6.at(i)->Num();
 			}
 			cout << col6.at(i)->Suit();
+			if (col6.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\t";
 		if (col7.size() > i) {
@@ -276,6 +313,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col7.at(i)->Num();
 			}
 			cout << col7.at(i)->Suit();
+			if (col7.at(i)->Faceup() == true) {
+				cout << "-U";
+			}
+			else {
+				cout << "-D";
+			}
 		}
 		cout << "\n";
 	}
@@ -285,10 +328,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 //NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
 vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 	if ((tableau.back()->Suit() == "C" || tableau.back()->Suit() == "S") && (card->Suit() == "D" || card->Suit() == "H") && (tableau.back()->Num() == (card->Num() + 1))) {
+		card->SetFaceup(true);
 		tableau.push_back(card);
 		return tableau;
 	}
 	else if ((tableau.back()->Suit() == "D" || tableau.back()->Suit() == "H") && (card->Suit() == "C" || card->Suit() == "S") && (tableau.back()->Num() == card->Num() + 1)) {
+		card->SetFaceup(true);
 		tableau.push_back(card);
 		return tableau;
 	}
@@ -332,6 +377,9 @@ List* List::RemoveCard(Node* card) {
 }
 
 void List::turnOver(vector<Node*> tableau) {
+	if (tableau.size() == 0) {
+		return;
+	}
 	if (tableau.back()->Faceup() == false) {
 		tableau.back()->SetFaceup(true);
 	}
@@ -367,4 +415,21 @@ void List::addFound(Node* card, vector<Node*> found) {
 	else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num() + 1)) {
 		found.push_back(card);
 	}
+}
+
+vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
+	if ((adding.back()->Suit() == "C" || adding.back()->Suit() == "S") && (moving.front()->Suit() == "D" || moving.front()->Suit() == "H") && (adding.back()->Num() == (moving.front()->Num() + 1))) {
+		for (int i = 0; i < moving.size(); i++) {
+			adding.push_back(moving.at(i));
+		}
+	}
+	else if ((adding.back()->Suit() == "D" || adding.back()->Suit() == "H") && (moving.front()->Suit() == "C" || moving.front()->Suit() == "S") && (adding.back()->Num() == (moving.front()->Num() + 1))) {
+		for (int i = 0; i < moving.size(); i++) {
+			adding.push_back(moving.at(i));
+		}
+	}
+	else {
+		cout << "Invalid move!";
+	}
+	return adding;
 }
