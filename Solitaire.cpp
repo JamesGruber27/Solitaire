@@ -1,10 +1,8 @@
-#include "Deck.h"
+##include "Deck.h"
 using namespace std;
 
 List* DrawCard(List* deck) {
 	deck->Draw();
-	Node* temp = deck->DCard();
-	cout << temp->Num() << temp->Suit() << endl;
 	return deck;
 }
 
@@ -101,6 +99,7 @@ int main() {
 
 	//Every turn of Solitaire
 	while (true) {
+<<<<<<< HEAD
         
         //Menu and user input
         cout << "\nWhat choice would you like to choose?" << endl;
@@ -114,6 +113,14 @@ int main() {
         cout << "8 - Attempts to add the drawn card to the seventh column" << endl;
         cout << "9 - Take cards from a column and add it to another column" << endl;
 
+=======
+		if (deck->DCard() != NULL) {
+			cout << "Currently drawn card: " << deck->DCard()->Num() << deck->DCard()->Suit();
+		}
+		else {
+			cout << "No card drawn";
+		}
+>>>>>>> abbd168562ad267229f05dd5f04e2a15e7700e33
 		int choice;
 		cin >> choice;
         

@@ -305,6 +305,12 @@ vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 List* List::RemoveCard(Node* card) {
 	int j = 0;
 	Node *temp = head;
+	if (card == temp) {
+		temp = temp->Next();
+		head = temp;
+		DrawnCard = NULL;
+		return this;
+	}
 	while (temp != NULL) {
 		if (temp == card) {
 			break;
@@ -324,6 +330,8 @@ List* List::RemoveCard(Node* card) {
 	}
 	temp1->SetNext(temp);
 	Loc--;
+	Loc--;
+	this->Draw();
 	return this;
 }
 
