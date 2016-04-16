@@ -4,13 +4,8 @@ using namespace std;
 List* DrawCard(List* deck) {
 	deck->Draw();
 	Node* temp = deck->DCard();
-	cout << temp->Num() << temp->Suit() << endl << endl;
+	cout << temp->Num() << temp->Suit() << endl;
 	return deck;
-}
-
-vector<Node*> MoveDecktoTab(List* deck, vector<Node*> col1) {
-	col1 = deck->add(deck->DCard(), col1);
-	return col1;
 }
 
 int main() {
@@ -112,10 +107,63 @@ int main() {
 		cin >> choice;
 		if (choice == 1) {
 			deck = DrawCard(deck);
+			cin.clear();
 			continue;
 		}
 		else if (choice == 2) {
-			col1 = MoveDecktoTab(deck, col1);
+			vector<Node*> temp = col1;
+			col1 = deck->add(deck->DCard(), col1);
+			if (col1.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 3) {
+			vector<Node*> temp = col2;
+			col2 = deck->add(deck->DCard(), col2);
+			if (col2.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 4) {
+			vector<Node*> temp = col3;
+			col3 = deck->add(deck->DCard(), col3);
+			if (col3.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 5) {
+			vector<Node*> temp = col4;
+			col4 = deck->add(deck->DCard(), col4);
+			if (col4.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 6) {
+			vector<Node*> temp = col5;
+			col5 = deck->add(deck->DCard(), col5);
+			if (col5.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 7) {
+			vector<Node*> temp = col6;
+			col6 = deck->add(deck->DCard(), col6);
+			if (col6.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
+			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
+		}
+		else if (choice == 8) {
+			vector<Node*> temp = col7;
+			col7 = deck->add(deck->DCard(), col7);
+			if (col7.size() > temp.size()) {
+				deck = deck->RemoveCard(deck->DCard());
+			}
 			deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		}
 		else {

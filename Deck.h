@@ -42,6 +42,7 @@ public:
 	int Length();
 	void addFound(Node* card, vector<Node*> found);
 	Node* DCard() { return DrawnCard; }
+	List* RemoveCard(Node* card);
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -128,14 +129,6 @@ vector<Node*> List::createColumn(int n) {
 
 //PRINTCOL - prints the tableau
 void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7) {
-	bool flag1 = true;
-	bool flag2 = true;
-	bool flag3 = true;
-	bool flag4 = true;
-	bool flag5 = true;
-	bool flag6 = true;
-	bool flag7 = true;
-
 	int max = col1.size();
 	if (col2.size()>col1.size())
 		max = col2.size();
@@ -150,9 +143,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 	if (col7.size()>col6.size())
 		max = col7.size();
 
+	cout << endl;
 	for (int i = 0; i < max; i++) {
-		if (flag1) {
-			cout << "\nTableau 1: ";
+		if (col1.size() > i) {
 			if (col1.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -169,13 +162,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col1.at(i)->Num();
 			}
 			cout << col1.at(i)->Suit();
-			if ((col1.size() - 1) == i) {
-				flag1 = false;
-			}
 		}
-
-		if (flag2) {
-			cout << "\tTableau 2: ";
+		cout << "\t";
+		if (col2.size() > i) {
 			if (col2.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -192,13 +181,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col2.at(i)->Num();
 			}
 			cout << col2.at(i)->Suit();
-			if ((col2.size() - 1) == i) {
-				flag2 = false;
-			}
 		}
-
-		if (flag3) {
-			cout << "\tTableau 3: ";
+		cout << "\t";
+		if (col3.size() > i) {
 			if (col3.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -215,13 +200,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col3.at(i)->Num();
 			}
 			cout << col3.at(i)->Suit();
-			if ((col3.size() - 1) == i) {
-				flag3 = false;
-			}
 		}
-
-		if (flag4) {
-			cout << "\tTableau 4: ";
+		cout << "\t";
+		if (col4.size() > i) {
 			if (col4.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -238,13 +219,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col4.at(i)->Num();
 			}
 			cout << col4.at(i)->Suit();
-			if ((col4.size() - 1) == i) {
-				flag4 = false;
-			}
 		}
-
-		if (flag5) {
-			cout << "\tTableau 5: ";
+		cout << "\t";
+		if (col5.size() > i) {
 			if (col5.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -261,13 +238,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col5.at(i)->Num();
 			}
 			cout << col5.at(i)->Suit();
-			if ((col5.size() - 1) == i) {
-				flag5 = false;
-			}
 		}
-
-		if (flag6) {
-			cout << "\tTableau 6: ";
+		cout << "\t";
+		if (col6.size() > i) {
 			if (col6.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -284,13 +257,9 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col6.at(i)->Num();
 			}
 			cout << col6.at(i)->Suit();
-			if ((col6.size() - 1) == i) {
-				flag6 = false;
-			}
 		}
-
-		if (flag7) {
-			cout << "\tTableau 7: ";
+		cout << "\t";
+		if (col7.size() > i) {
 			if (col7.at(i)->Num() == 1) {
 				cout << "A";
 			}
@@ -307,31 +276,8 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << col7.at(i)->Num();
 			}
 			cout << col7.at(i)->Suit();
-			if ((col7.size() - 1) == i) {
-				flag7 = false;
-			}
 		}
-
-		//FORMATTING
 		cout << "\n";
-		if (!flag1) {
-			cout << "\t\t\t";
-		}
-		if (!flag2) {
-			cout << "\t\t\t\t";
-		}
-		if (!flag3) {
-			cout << "\t\t\t\t";
-		}
-		if (!flag4) {
-			cout << "\t\t\t\t";
-		}
-		if (!flag5) {
-			cout << "\t\t\t\t";
-		}
-		if (!flag6) {
-			cout << "\t\t\t\t";
-		}
 	}
 }
 
@@ -350,6 +296,31 @@ vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 		cout << "Invalid move." << endl;
 		return tableau;
 	}
+}
+
+List* List::RemoveCard(Node* card) {
+	int j = 0;
+	Node *temp = head;
+	while (temp != NULL) {
+		if (temp == card) {
+			break;
+		}
+		j++;
+		temp = temp->Next();
+	}
+	temp = head;
+	Node *temp1 = head;
+	for (int i = 0; i < j + 1; i++) {
+		temp = temp->Next();
+	}
+	if (j > 0) {
+		for (int i = 0; i < j - 1; i++) {
+			temp1 = temp1->Next();
+		}
+	}
+	temp1->SetNext(temp);
+	Loc--;
+	return this;
 }
 
 void List::turnOver(vector<Node*> tableau) {
