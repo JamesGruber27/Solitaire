@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Deck.h"
 using namespace std;
 
@@ -183,6 +184,10 @@ int main() {
 			}
 		}
 		else if (choice == 9) {
+			if (col1.size() == 0) {
+				cout << "Column empty!" << endl;
+				continue;
+			}
 			cout << "How many cards would you like to move?";
 			int num = 0;
 			cin >> num;
@@ -209,28 +214,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col1.at(i + nonmoving.size()));
 			}
-			col1 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col1 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 10) {
@@ -260,28 +290,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col2.at(i + nonmoving.size()));
 			}
-			col2 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col2 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 11) {
@@ -311,28 +366,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col3.at(i + nonmoving.size()));
 			}
-			col3 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 			else if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col3 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 12) {
@@ -362,28 +442,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col4.at(i + nonmoving.size()));
 			}
-			col4 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 			else if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col4 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 13) {
@@ -413,28 +518,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col5.at(i + nonmoving.size()));
 			}
-			col5 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 			else if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col5 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 14) {
@@ -464,28 +594,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col6.at(i + nonmoving.size()));
 			}
-			col6 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 			else if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 			else if (col == 7) {
 				col7 = deck->ColtoCol(moving, col7);
+				check = deck->CheckMovetoCol(moving, col7);
+				if (check) {
+					col6 = nonmoving;
+				}
 			}
 		}
 		else if (choice == 15) {
@@ -515,28 +670,53 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col7.at(i + nonmoving.size()));
 			}
-			col7 = nonmoving;
+
+			bool check;
 
 			cout << "...And to which column?" << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
 				col2 = deck->ColtoCol(moving, col2);
+				check = deck->CheckMovetoCol(moving, col2);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 			else if (col == 3) {
 				col3 = deck->ColtoCol(moving, col3);
+				check = deck->CheckMovetoCol(moving, col3);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 			else if (col == 4) {
 				col4 = deck->ColtoCol(moving, col4);
+				check = deck->CheckMovetoCol(moving, col4);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 			else if (col == 5) {
 				col5 = deck->ColtoCol(moving, col5);
+				check = deck->CheckMovetoCol(moving, col5);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 			else if (col == 6) {
 				col6 = deck->ColtoCol(moving, col6);
+				check = deck->CheckMovetoCol(moving, col6);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 			else if (col == 1) {
 				col1 = deck->ColtoCol(moving, col1);
+				check = deck->CheckMovetoCol(moving, col1);
+				if (check) {
+					col7 = nonmoving;
+				}
 			}
 		}
 		else {

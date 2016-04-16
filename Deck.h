@@ -44,6 +44,8 @@ public:
 	Node* DCard() { return DrawnCard; }
 	List* RemoveCard(Node* card);
 	vector<Node*> ColtoCol(vector<Node*> moving, vector<Node*> adding);
+	bool CheckMovetoCol(vector<Node*> moving, vector<Node*> adding);
+
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -327,6 +329,12 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 //WE NEED TO MAKE IT SO THAT THE GUI IS ACTIVATED HERE
 //NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
 vector<Node*> List::add(Node* card, vector<Node*> tableau) {
+	if (tableau.size() == 0 && card->Num() == 13) {
+		tableau.push_back(card);
+	}
+	else if (tableau.size() == 0) {
+		cout << "Invalid move!";
+	}
 	if ((tableau.back()->Suit() == "C" || tableau.back()->Suit() == "S") && (card->Suit() == "D" || card->Suit() == "H") && (tableau.back()->Num() == (card->Num() + 1))) {
 		card->SetFaceup(true);
 		tableau.push_back(card);
@@ -418,7 +426,15 @@ void List::addFound(Node* card, vector<Node*> found) {
 }
 
 vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
-	if ((adding.back()->Suit() == "C" || adding.back()->Suit() == "S") && (moving.front()->Suit() == "D" || moving.front()->Suit() == "H") && (adding.back()->Num() == (moving.front()->Num() + 1))) {
+	if (adding.size() == 0 && moving.front()->Num() == 13) {
+		for (int i = 0; i < moving.size(); i++) {
+			adding.push_back(moving.at(i));
+		}
+	}
+	else if (adding.size() == 0) {
+		cout << "Invalid move!";
+	}
+	else if ((adding.back()->Suit() == "C" || adding.back()->Suit() == "S") && (moving.front()->Suit() == "D" || moving.front()->Suit() == "H") && (adding.back()->Num() == (moving.front()->Num() + 1))) {
 		for (int i = 0; i < moving.size(); i++) {
 			adding.push_back(moving.at(i));
 		}
@@ -432,4 +448,15 @@ vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
 		cout << "Invalid move!";
 	}
 	return adding;
+}
+
+bool List::CheckMovetoCol(vector<Node*> moving, vector<Node*> adding) {
+	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num())) {
+		cout << "wut";
+		return true;
+	}
+	else {
+		cout << "que";
+		return false;
+	}
 }
