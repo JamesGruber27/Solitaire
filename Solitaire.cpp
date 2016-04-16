@@ -98,39 +98,6 @@ int main() {
 
 	//Print deck again to show you that the correct cards were taken out
 	deck->Print();
-<<<<<<< HEAD
-    
-    //Create columns of the tableau
-    vector<Node*> col1 = deck->createColumn(1);
-    vector<Node*> col2 = deck->createColumn(2);
-    vector<Node*> col3 = deck->createColumn(3);
-    vector<Node*> col4 = deck->createColumn(4);
-    vector<Node*> col5 = deck->createColumn(5);
-    vector<Node*> col6 = deck->createColumn(6);
-    vector<Node*> col7 = deck->createColumn(7);
-    int initCount1 = 1, initCount2 = 2, initCount3 = 3, initCount4 = 4, initCount5 = 5, initCount6 = 6, initCount7 = 7;
-    
-    //Create columns of the foundation
-    vector<Node*> found1 = deck->createColumn(0);
-    vector<Node*> found2 = deck->createColumn(0);
-    vector<Node*> found3 = deck->createColumn(0);
-    vector<Node*> found4 = deck->createColumn(0);
-    
-    //Print columns
-    deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
-    
-    //Print deck again to show you that the correct cards were taken out
-    deck->Print();
-    
-    deck->turnOver(col1);
-    deck->turnOver(col2);
-    deck->turnOver(col3);
-    deck->turnOver(col4);
-    deck->turnOver(col5);
-    deck->turnOver(col6);
-    deck->turnOver(col7);
-=======
->>>>>>> 35d5175305d7c042784d096377c294ae001ffc64
 
 	deck->turnOver(col1);
 	deck->turnOver(col2);
