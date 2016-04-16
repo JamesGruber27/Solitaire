@@ -23,6 +23,9 @@ public:
 	Node *Next() { return next; }
 	string Suit() { return suit; }
 	bool Faceup() { return faceup; }
+    Node(){
+        SetFaceup(false);
+    }
 };
 
 class List {
@@ -41,8 +44,9 @@ public:
 	void Draw();
 	int Length();
 	void addFound(Node* card, vector<Node*> found);
-	Node* DCard() { return DrawnCard; }
+    Node* DCard();
 	List* RemoveCard(Node* card);
+    vector<Node *> findSame(vector<Node *>fromCol, vector<Node *>col1, vector<Node *>col2, vector<Node *>col3, vector<Node *>col4, vector<Node *>col5, vector<Node *>col6, vector<Node *>col7);
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -281,8 +285,7 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 	}
 }
 
-//WE NEED TO MAKE IT SO THAT THE GUI IS ACTIVATED HERE
-//NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
+//ADD - 
 vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 	if ((tableau.back()->Suit() == "C" || tableau.back()->Suit() == "S") && (card->Suit() == "D" || card->Suit() == "H") && (tableau.back()->Num() == (card->Num() + 1))) {
 		tableau.push_back(card);
@@ -298,6 +301,7 @@ vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 	}
 }
 
+//REMOVECARD - Removes a card from the deck
 List* List::RemoveCard(Node* card) {
 	int j = 0;
 	Node *temp = head;
@@ -323,12 +327,14 @@ List* List::RemoveCard(Node* card) {
 	return this;
 }
 
+//TURNOVER - Checks the tableau after every turn for cards that should be turned over in the tableau
 void List::turnOver(vector<Node*> tableau) {
 	if (tableau.back()->Faceup() == false) {
 		tableau.back()->SetFaceup(true);
 	}
 }
 
+//DRAW - 
 void List::Draw() {
 	Node *temp = head;
 	int j = this->Length();
@@ -340,9 +346,11 @@ void List::Draw() {
 	}
 	Loc++;
 	DrawnCard = temp;
+    DrawnCard->SetFaceup(true);
 	return;
 }
 
+//LENGTH - Finds the length(size) of the deck
 int List::Length() {
 	int j = 0;
 	Node* temp = head;
@@ -353,10 +361,43 @@ int List::Length() {
 	return j;
 }
 
+//ADDFOUND - Allows you to add a card (of correct specification) to the four foundations columns
 void List::addFound(Node* card, vector<Node*> found) {
 	if (found.empty() && card->Num() == 1)
 		found.push_back(card);
-	else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num() + 1)) {
+	else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num() + 1))
 		found.push_back(card);
-	}
+}
+
+//DCARD - Returns the drawn card of the deck
+Node* List::DCard(){
+        return DrawnCard;
+}
+
+//findSame - Removes the moved cards from the original column
+vector<Node *> List::findSame(vector<Node *>fromCol, vector<Node *>col1, vector<Node *>col2, vector<Node *>col3, vector<Node *>col4, vector<Node *>col5, vector<Node *>col6, vector<Node *>col7) {
+    if (fromCol == col1){
+        return col1;
+    }
+    else if (fromCol == col2){
+        return col2;
+    }
+    else if (fromCol == col3){
+        return col3;
+    }
+    else if (fromCol == col4){
+        return col4;
+    }
+    else if (fromCol == col5){
+        return col5;
+    }
+    else if (fromCol == col6){
+        return col6;
+    }
+    else if (fromCol == col7){
+        return col7;
+    }
+    else{
+        return col1;
+    }
 }
