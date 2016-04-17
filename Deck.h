@@ -46,7 +46,7 @@ public:
 	vector<Node*> ColtoCol(vector<Node*> moving, vector<Node*> adding);
 	bool CheckMovetoCol(vector<Node*> moving, vector<Node*> adding);
 	void PrintFound(vector<Node*> n);
-
+	vector<Node*> FoundtoCol(Node *n, vector<Node*> a);
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -150,7 +150,7 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 		max = col6.size();
 	if (col7.size()>max)
 		max = col7.size();
-
+	
 	cout << endl;
 	for (int i = 0; i < max; i++) {
 		if (col1.size() > i) {
@@ -177,7 +177,7 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 				cout << "-D";
 			}
 		}
-		cout << "\t";
+		cout<<"\t";
 		if (col2.size() > i) {
 			if (col2.at(i)->Num() == 1) {
 				cout << "A";
@@ -335,7 +335,7 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 //NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
 vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 	if (tableau.size() == 0 && card->Num() == 13) {
-		tableau.push_back(card);
+			tableau.push_back(card);
 	}
 	else if (tableau.size() == 0) {
 		cout << "Invalid move!";
@@ -363,6 +363,7 @@ List* List::RemoveCard(Node* card) {
 		temp = temp->Next();
 		head = temp;
 		DrawnCard = NULL;
+		Loc = 0;
 		return this;
 	}
 	while (temp != NULL) {
@@ -463,8 +464,8 @@ vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
 }
 
 bool List::CheckMovetoCol(vector<Node*> moving, vector<Node*> adding) {
-	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num())) {
-		return true;
+	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num() )) {
+			return true;
 	}
 	else {
 		return false;
@@ -489,7 +490,21 @@ void List::PrintFound(vector<Node*> n) {
 			cout << n.at(i)->Num();
 		}
 		cout << n.at(i)->Suit();
-		cout << "\t";
+		cout << "  ";
 	}
 	cout << endl;
+}
+
+vector<Node*> List::FoundtoCol(Node *n, vector<Node*> a) {
+	if ((a.back()->Suit() == "C" || a.back()->Suit() == "S") && (n->Suit() == "D" || n->Suit() == "H") && (a.back()->Num() == (n->Num() + 1))) {
+		a.push_back(n);
+		return a;
+	}
+	else if ((a.back()->Suit() == "D" || a.back()->Suit() == "H") && (n->Suit() == "C" || n->Suit() == "S") && (a.back()->Num() == (n->Num() + 1))) {
+		a.push_back(n);
+		return a;
+	}
+	else {
+		return a;
+	}
 }
