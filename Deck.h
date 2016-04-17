@@ -54,6 +54,7 @@ public:
 //CONSTRUCTOR - creates a 52 card deck
 List::List(vector<string> cards) {
 	head = new Node();
+	DrawnCard = NULL;
 	Loc = 0;
 	Node* temp = head;
 	for (int i = 0; i < 52; i++) {
