@@ -137,17 +137,17 @@ vector<Node*> List::createColumn(int n) {
 //PRINTCOL - prints the tableau
 void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, vector<Node*> col4, vector<Node*> col5, vector<Node*> col6, vector<Node*> col7) {
 	int max = col1.size();
-	if (col2.size()>col1.size())
+	if (col2.size()>max)
 		max = col2.size();
-	if (col3.size()>col2.size())
+	if (col3.size()>max)
 		max = col3.size();
-	if (col4.size()>col3.size())
+	if (col4.size()>max)
 		max = col4.size();
-	if (col5.size()>col4.size())
+	if (col5.size()>max)
 		max = col5.size();
-	if (col6.size()>col5.size())
+	if (col6.size()>max)
 		max = col6.size();
-	if (col7.size()>col6.size())
+	if (col7.size()>max)
 		max = col7.size();
 
 	cout << endl;
@@ -463,11 +463,9 @@ vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
 
 bool List::CheckMovetoCol(vector<Node*> moving, vector<Node*> adding) {
 	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num())) {
-		cout << "wut";
 		return true;
 	}
 	else {
-		cout << "que";
 		return false;
 	}
 }

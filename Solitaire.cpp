@@ -60,7 +60,7 @@ int main() {
 	shuffler.push_back("10H");
 	shuffler.push_back("11H");
 	shuffler.push_back("12H");
-	shuffler.push_back("13C");
+	shuffler.push_back("13H");
 
 	//Shuffle the 52-long vector
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
