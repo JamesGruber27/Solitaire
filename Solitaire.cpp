@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Deck.h"
 using namespace std;
 
@@ -72,8 +71,7 @@ int main() {
 	//Greetings
 	cout << "Welcome to Solitaire! Here is your starting board." << endl;
 
-	//Printing the contents of the deck
-	deck->Print();
+
 
 	//Create columns of the tableau
 	vector<Node*> col1 = deck->createColumn(1);
@@ -100,6 +98,7 @@ int main() {
 
 	//Print deck again to show you that the correct cards were taken out
 	deck->Print();
+	cout << endl << endl;
 
 	deck->turnOver(col1);
 	deck->turnOver(col2);
@@ -113,29 +112,45 @@ int main() {
 	while (true) {
 		if (foundClubs.size() > 0 && foundDiamonds.size()>0 && foundSpades.size() > 0 && foundHearts.size() > 0) {
 			if (foundClubs.back()->Num() == 13 && foundDiamonds.back()->Num() == 13 && foundSpades.back()->Num() == 13 && foundHearts.back()->Num() == 13) {
-				cout << "Congratulations! You Win!";
+				cout << "Congratulations! You Win!"<<endl;
 				break;
 			}
 		}
-		if (deck->DCard() != NULL) {
-			cout << "Currently drawn card: " << deck->DCard()->Num() << deck->DCard()->Suit();
+		if (deck->DCard()!= NULL) {
+			cout << "Currently drawn card: ";
+			if (deck->DCard()->Num() == 1) {
+				cout << "A";
+			}
+			else if (deck->DCard()->Num() == 11) {
+				cout << "J";
+			}
+			else if (deck->DCard()->Num() == 12) {
+				cout << "Q";
+			}
+			else if (deck->DCard()->Num() == 13) {
+				cout << "K";
+			}
+			else {
+				cout << deck->DCard()->Num();
+			}
+			cout << deck->DCard()->Suit();
 		}
 		else {
 			cout << "No card drawn";
 		}
 		int choice;
-		cout << endl << "Enter 999 for options" << endl;
+		cout << endl << "Enter 999 for options" << endl << endl;
 		cin >> choice;
 		if (choice == 999) {
 			cout << endl << "1 - Draw a card" << endl;
-			cout << "2 - Attempts to add the drawn card to the first column" << endl;
-			cout << "3 - Attempts to add the drawn card to the second column" << endl;
-			cout << "4 - Attempts to add the drawn card to the third column" << endl;
-			cout << "5 - Attempts to add the drawn card to the fourth column" << endl;
-			cout << "6 - Attempts to add the drawn card to the fifth column" << endl;
-			cout << "7 - Attempts to add the drawn card to the sixth column" << endl;
-			cout << "8 - Attempts to add the drawn card to the seventh column" << endl;
-			cout << "9 - Move cards from Column 1" << endl;
+			cout << "2  - Attempts to add the drawn card to the first column" << endl;
+			cout << "3  - Attempts to add the drawn card to the second column" << endl;
+			cout << "4  - Attempts to add the drawn card to the third column" << endl;
+			cout << "5  - Attempts to add the drawn card to the fourth column" << endl;
+			cout << "6  - Attempts to add the drawn card to the fifth column" << endl;
+			cout << "7  - Attempts to add the drawn card to the sixth column" << endl;
+			cout << "8  - Attempts to add the drawn card to the seventh column" << endl;
+			cout << "9  - Move cards from Column 1" << endl;
 			cout << "10 - Move cards from Column 2" << endl;
 			cout << "11 - Move cards from Column 3" << endl;
 			cout << "12 - Move cards from Column 4" << endl;
@@ -146,12 +161,15 @@ int main() {
 			cout << "17 - Move Drawn card to Diamonds Foundation" << endl;
 			cout << "18 - Move Drawn card to Spades Foundation" << endl;
 			cout << "19 - Move Drawn card to Hearts Foundation" << endl;
+			cout << "20 - Move card from Clubs foundation to column" << endl;
+			cout << "21 - Move card from Diamonds foundation to column" << endl;
+			cout << "22 - Move card from Spades foundation to column" << endl;
+			cout << "23 - Move card from Hearts foundation to column" << endl;
 			continue;
 		}
 		else if (choice == 1) {
 			deck = DrawCard(deck);
 			cin.clear();
-			continue;
 		}
 		else if (choice == 2) {
 			vector<Node*> temp = col1;
@@ -207,7 +225,7 @@ int main() {
 				cout << "Column empty!" << endl;
 				continue;
 			}
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -220,7 +238,7 @@ int main() {
 				}
 			}
 			if (num > temp.size()) {
-				cout << "Too many!" << endl;
+				cout<<"Too many!" << endl;
 				continue;
 			}
 
@@ -237,6 +255,10 @@ int main() {
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -343,7 +365,7 @@ int main() {
 			}
 		}
 		else if (choice == 10) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -369,10 +391,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col2.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 1) {
@@ -479,7 +505,7 @@ int main() {
 			}
 		}
 		else if (choice == 11) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -505,10 +531,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col3.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -615,7 +645,7 @@ int main() {
 			}
 		}
 		else if (choice == 12) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -641,10 +671,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col4.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -751,7 +785,7 @@ int main() {
 			}
 		}
 		else if (choice == 13) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -777,10 +811,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col5.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -887,7 +925,7 @@ int main() {
 			}
 		}
 		else if (choice == 14) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -913,10 +951,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col6.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -1023,7 +1065,7 @@ int main() {
 			}
 		}
 		else if (choice == 15) {
-			cout << "How many cards would you like to move?";
+			cout << "How many cards would you like to move?" << endl;
 			int num = 0;
 			cin >> num;
 			vector<Node*> colFrom, temp;
@@ -1049,10 +1091,14 @@ int main() {
 			for (int i = 0; i < num; i++) {
 				moving.push_back(col7.at(i + nonmoving.size()));
 			}
-
+			
 			bool check;
 
 			cout << "...And to which column?" << endl;
+			cout << "8 is Clubs." << endl;
+			cout << "9 is Diamonds." << endl;
+			cout << "10 is Spades." << endl;
+			cout << "11 is Hearts." << endl;
 			int col = 0;
 			cin >> col;
 			if (col == 2) {
@@ -1190,8 +1236,276 @@ int main() {
 			foundHearts = deck->addFound(deck->DCard(), foundHearts);
 			deck = deck->RemoveCard(deck->DCard());
 		}
+		else if (choice == 20) {
+			if (foundClubs.size() == 0) {
+				cout << "Invalid Move!" << endl;
+				continue;
+			}
+			Node *temp = foundClubs.back();
+			bool check = false; 
+			
+			cout << "Move foundation card where?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 1) {
+				vector<Node*> checker= col1;
+				col1 = deck->FoundtoCol(temp, col1);
+				if (col1.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 2) {
+				vector<Node*> checker = col2;
+				col2 = deck->FoundtoCol(temp, col2);
+				if (col2.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 3) {
+				vector<Node*> checker = col3;
+				col3 = deck->FoundtoCol(temp, col3);
+				if (col3.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 4) {
+				vector<Node*> checker = col4;
+				col4 = deck->FoundtoCol(temp, col4);
+				if (col4.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 5) {
+				vector<Node*> checker = col5;
+				col5 = deck->FoundtoCol(temp, col5);
+				if (col5.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 6) {
+				vector<Node*> checker = col6;
+				col6 = deck->FoundtoCol(temp, col6);
+				if (col6.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 7) {
+				vector<Node*> checker = col7;
+				col7 = deck->FoundtoCol(temp, col7);
+				if (col7.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else {
+				cout << "Invalid Move!";
+			}
+			if (check) {
+				foundClubs.pop_back();
+			}
+		}
+		else if (choice == 21) {
+			if (foundDiamonds.size() == 0) {
+				cout << "Invalid Move!" << endl;
+				continue;
+			}
+			Node *temp = foundDiamonds.back();
+			bool check = false;
+
+			cout << "Move foundation card where?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 1) {
+				vector<Node*> checker = col1;
+				col1 = deck->FoundtoCol(temp, col1);
+				if (col1.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 2) {
+				vector<Node*> checker = col2;
+				col2 = deck->FoundtoCol(temp, col2);
+				if (col2.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 3) {
+				vector<Node*> checker = col3;
+				col3 = deck->FoundtoCol(temp, col3);
+				if (col3.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 4) {
+				vector<Node*> checker = col4;
+				col4 = deck->FoundtoCol(temp, col4);
+				if (col4.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 5) {
+				vector<Node*> checker = col5;
+				col5 = deck->FoundtoCol(temp, col5);
+				if (col5.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 6) {
+				vector<Node*> checker = col6;
+				col6 = deck->FoundtoCol(temp, col6);
+				if (col6.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 7) {
+				vector<Node*> checker = col7;
+				col7 = deck->FoundtoCol(temp, col7);
+				if (col7.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else {
+				cout << "Invalid Move!";
+			}
+			if (check) {
+				foundDiamonds.pop_back();
+			}
+		}
+		else if (choice == 22) {
+			if (foundSpades.size() == 0) {
+				cout << "Invalid Move!" << endl;
+				continue;
+			}
+			Node *temp = foundSpades.back();
+			bool check = false;
+
+			cout << "Move foundation card where?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 1) {
+				vector<Node*> checker = col1;
+				col1 = deck->FoundtoCol(temp, col1);
+				if (col1.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 2) {
+				vector<Node*> checker = col2;
+				col2 = deck->FoundtoCol(temp, col2);
+				if (col2.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 3) {
+				vector<Node*> checker = col3;
+				col3 = deck->FoundtoCol(temp, col3);
+				if (col3.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 4) {
+				vector<Node*> checker = col4;
+				col4 = deck->FoundtoCol(temp, col4);
+				if (col4.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 5) {
+				vector<Node*> checker = col5;
+				col5 = deck->FoundtoCol(temp, col5);
+				if (col5.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 6) {
+				vector<Node*> checker = col6;
+				col6 = deck->FoundtoCol(temp, col6);
+				if (col6.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 7) {
+				vector<Node*> checker = col7;
+				col7 = deck->FoundtoCol(temp, col7);
+				if (col7.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else {
+				cout << "Invalid Move!";
+			}
+			if (check) {
+				foundSpades.pop_back();
+			}
+		}
+		else if (choice == 23) {
+			if (foundHearts.size() == 0) {
+				cout << "Invalid Move!" << endl;
+				continue;
+			}
+			Node *temp = foundHearts.back();
+			bool check = false;
+
+			cout << "Move foundation card where?" << endl;
+			int col = 0;
+			cin >> col;
+			if (col == 1) {
+				vector<Node*> checker = col1;
+				col1 = deck->FoundtoCol(temp, col1);
+				if (col1.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 2) {
+				vector<Node*> checker = col2;
+				col2 = deck->FoundtoCol(temp, col2);
+				if (col2.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 3) {
+				vector<Node*> checker = col3;
+				col3 = deck->FoundtoCol(temp, col3);
+				if (col3.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 4) {
+				vector<Node*> checker = col4;
+				col4 = deck->FoundtoCol(temp, col4);
+				if (col4.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 5) {
+				vector<Node*> checker = col5;
+				col5 = deck->FoundtoCol(temp, col5);
+				if (col5.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 6) {
+				vector<Node*> checker = col6;
+				col6 = deck->FoundtoCol(temp, col6);
+				if (col6.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else if (col == 7) {
+				vector<Node*> checker = col7;
+				col7 = deck->FoundtoCol(temp, col7);
+				if (col7.size() > checker.size()) {
+					check = true;
+				}
+			}
+			else {
+				cout << "Invalid Move!";
+			}
+			if (check) {
+				foundHearts.pop_back();
+			}
+		}
 		else {
-			break;
+			cout<<"Please enter a Valid value!";
 		}
 		deck->turnOver(col1);
 		deck->turnOver(col2);
@@ -1206,6 +1520,7 @@ int main() {
 		deck->PrintFound(foundHearts);
 		deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		deck->Print();
+		cout << endl << endl;
 
 	}
 	//NEED TO PUT A WHILE LOOP
