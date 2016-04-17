@@ -47,6 +47,7 @@ public:
 	bool CheckMovetoCol(vector<Node*> moving, vector<Node*> adding);
 	void PrintFound(vector<Node*> n);
 	vector<Node*> FoundtoCol(Node *n, vector<Node*> a);
+	int ReturnLoc() { return Loc; }
 };
 
 //OUT-OF-LINE FUNCTIONS
@@ -150,181 +151,188 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 		max = col6.size();
 	if (col7.size()>max)
 		max = col7.size();
-	
+
 	cout << endl;
 	for (int i = 0; i < max; i++) {
 		if (col1.size() > i) {
-			if (col1.at(i)->Num() == 1) {
+			if (col1.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col1.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col1.at(i)->Suit();
 			}
 			else if (col1.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col1.at(i)->Suit();
 			}
 			else if (col1.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col1.at(i)->Suit();
 			}
 			else if (col1.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col1.at(i)->Suit();
 			}
 			else {
 				cout << col1.at(i)->Num();
-			}
-			cout << col1.at(i)->Suit();
-			if (col1.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col1.at(i)->Suit();
 			}
 		}
-		cout<<"\t";
+		cout << "\t";
 		if (col2.size() > i) {
-			if (col2.at(i)->Num() == 1) {
+			if (col2.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col2.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col2.at(i)->Suit();
 			}
 			else if (col2.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col2.at(i)->Suit();
 			}
 			else if (col2.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col2.at(i)->Suit();
 			}
 			else if (col2.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col2.at(i)->Suit();
 			}
 			else {
 				cout << col2.at(i)->Num();
-			}
-			cout << col2.at(i)->Suit();
-			if (col2.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col2.at(i)->Suit();
 			}
 		}
 		cout << "\t";
 		if (col3.size() > i) {
-			if (col3.at(i)->Num() == 1) {
+			if (col3.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col3.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col3.at(i)->Suit();
 			}
 			else if (col3.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col3.at(i)->Suit();
 			}
 			else if (col3.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col3.at(i)->Suit();
 			}
 			else if (col3.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col3.at(i)->Suit();
 			}
 			else {
 				cout << col3.at(i)->Num();
-			}
-			cout << col3.at(i)->Suit();
-			if (col3.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col3.at(i)->Suit();
 			}
 		}
 		cout << "\t";
 		if (col4.size() > i) {
-			if (col4.at(i)->Num() == 1) {
+			if (col4.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col4.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col4.at(i)->Suit();
 			}
 			else if (col4.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col4.at(i)->Suit();
 			}
 			else if (col4.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col4.at(i)->Suit();
 			}
 			else if (col4.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col4.at(i)->Suit();
 			}
 			else {
 				cout << col4.at(i)->Num();
-			}
-			cout << col4.at(i)->Suit();
-			if (col4.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col4.at(i)->Suit();
 			}
 		}
 		cout << "\t";
 		if (col5.size() > i) {
-			if (col5.at(i)->Num() == 1) {
+			if (col5.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col5.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col5.at(i)->Suit();
 			}
 			else if (col5.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col5.at(i)->Suit();
 			}
 			else if (col5.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col5.at(i)->Suit();
 			}
 			else if (col5.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col5.at(i)->Suit();
 			}
 			else {
 				cout << col5.at(i)->Num();
-			}
-			cout << col5.at(i)->Suit();
-			if (col5.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col5.at(i)->Suit();
 			}
 		}
 		cout << "\t";
 		if (col6.size() > i) {
-			if (col6.at(i)->Num() == 1) {
+			if (col6.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col6.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col6.at(i)->Suit();
 			}
 			else if (col6.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col6.at(i)->Suit();
 			}
 			else if (col6.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col6.at(i)->Suit();
 			}
 			else if (col6.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col6.at(i)->Suit();
 			}
 			else {
 				cout << col6.at(i)->Num();
-			}
-			cout << col6.at(i)->Suit();
-			if (col6.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col6.at(i)->Suit();
 			}
 		}
 		cout << "\t";
 		if (col7.size() > i) {
-			if (col7.at(i)->Num() == 1) {
+			if (col7.at(i)->Faceup() == false) {
+				cout << "D";
+			}
+			else if (col7.at(i)->Num() == 1) {
 				cout << "A";
+				cout << col7.at(i)->Suit();
 			}
 			else if (col7.at(i)->Num() == 11) {
 				cout << "J";
+				cout << col7.at(i)->Suit();
 			}
 			else if (col7.at(i)->Num() == 12) {
 				cout << "Q";
+				cout << col7.at(i)->Suit();
 			}
 			else if (col7.at(i)->Num() == 13) {
 				cout << "K";
+				cout << col7.at(i)->Suit();
 			}
 			else {
 				cout << col7.at(i)->Num();
-			}
-			cout << col7.at(i)->Suit();
-			if (col7.at(i)->Faceup() == true) {
-				cout << "-U";
-			}
-			else {
-				cout << "-D";
+				cout << col7.at(i)->Suit();
 			}
 		}
 		cout << "\n";
@@ -335,12 +343,14 @@ void List::PrintCol(vector<Node*> col1, vector<Node*> col2, vector<Node*> col3, 
 //NOT SURE IF JACKS AND ABOVE WILL BE ALRIGHT
 vector<Node*> List::add(Node* card, vector<Node*> tableau) {
 	if (tableau.size() == 0 && card->Num() == 13) {
-			tableau.push_back(card);
+		tableau.push_back(card);
+		return tableau;
 	}
 	else if (tableau.size() == 0) {
 		cout << "Invalid move!";
+		return tableau;
 	}
-	if ((tableau.back()->Suit() == "C" || tableau.back()->Suit() == "S") && (card->Suit() == "D" || card->Suit() == "H") && (tableau.back()->Num() == (card->Num() + 1))) {
+	else if ((tableau.back()->Suit() == "C" || tableau.back()->Suit() == "S") && (card->Suit() == "D" || card->Suit() == "H") && (tableau.back()->Num() == (card->Num() + 1))) {
 		card->SetFaceup(true);
 		tableau.push_back(card);
 		return tableau;
@@ -464,8 +474,8 @@ vector<Node*> List::ColtoCol(vector<Node*> moving, vector<Node*> adding) {
 }
 
 bool List::CheckMovetoCol(vector<Node*> moving, vector<Node*> adding) {
-	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num() )) {
-			return true;
+	if ((adding.back()->Suit() == moving.back()->Suit() && adding.back()->Num() == moving.back()->Num())) {
+		return true;
 	}
 	else {
 		return false;
@@ -496,7 +506,15 @@ void List::PrintFound(vector<Node*> n) {
 }
 
 vector<Node*> List::FoundtoCol(Node *n, vector<Node*> a) {
-	if ((a.back()->Suit() == "C" || a.back()->Suit() == "S") && (n->Suit() == "D" || n->Suit() == "H") && (a.back()->Num() == (n->Num() + 1))) {
+	if (a.size() == 0 && n->Num() == 13) {
+		a.push_back(n);
+		return a;
+	}
+	else if (a.size() == 0) {
+		cout << "Invalid move!";
+		return a;
+	}
+	else if ((a.back()->Suit() == "C" || a.back()->Suit() == "S") && (n->Suit() == "D" || n->Suit() == "H") && (a.back()->Num() == (n->Num() + 1))) {
 		a.push_back(n);
 		return a;
 	}
