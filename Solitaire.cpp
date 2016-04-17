@@ -85,7 +85,16 @@ int main() {
 	vector<Node*> col7 = deck->createColumn(7);
 	int initCount1 = 1, initCount2 = 2, initCount3 = 3, initCount4 = 4, initCount5 = 5, initCount6 = 6, initCount7 = 7;
 
+	//create foundations
+	vector<Node*> foundClubs = deck->createColumn(0);
+	vector<Node*> foundDiamonds = deck->createColumn(0);
+	vector<Node*> foundSpades = deck->createColumn(0);
+	vector<Node*> foundHearts = deck->createColumn(0);
 
+	deck->PrintFound(foundClubs);
+	deck->PrintFound(foundDiamonds);
+	deck->PrintFound(foundSpades);
+	deck->PrintFound(foundHearts);
 	//Print columns
 	deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 
@@ -102,6 +111,12 @@ int main() {
 
 	//The Game should take place here
 	while (true) {
+		if (foundClubs.size() > 0 && foundDiamonds.size()>0 && foundSpades.size() > 0 && foundHearts.size() > 0) {
+			if (foundClubs.back()->Num() == 13 && foundDiamonds.back()->Num() == 13 && foundSpades.back()->Num() == 13 && foundHearts.back()->Num() == 13) {
+				cout << "Congratulations! You Win!";
+				break;
+			}
+		}
 		if (deck->DCard() != NULL) {
 			cout << "Currently drawn card: " << deck->DCard()->Num() << deck->DCard()->Suit();
 		}
@@ -127,6 +142,10 @@ int main() {
 			cout << "13 - Move cards from Column 5" << endl;
 			cout << "14 - Move cards from Column 6" << endl;
 			cout << "15 - Move cards from Column 7" << endl;
+			cout << "16 - Move Drawn card to Clubs Foundation" << endl;
+			cout << "17 - Move Drawn card to Diamonds Foundation" << endl;
+			cout << "18 - Move Drawn card to Spades Foundation" << endl;
+			cout << "19 - Move Drawn card to Hearts Foundation" << endl;
 			continue;
 		}
 		else if (choice == 1) {
@@ -262,6 +281,66 @@ int main() {
 					col1 = nonmoving;
 				}
 			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col1 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col1 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col1 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
+					col1 = nonmoving;
+				}
+			}
 		}
 		else if (choice == 10) {
 			cout << "How many cards would you like to move?";
@@ -335,6 +414,66 @@ int main() {
 				col7 = deck->ColtoCol(moving, col7);
 				check = deck->CheckMovetoCol(moving, col7);
 				if (check) {
+					col2 = nonmoving;
+				}
+			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col2 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col2 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col2 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
 					col2 = nonmoving;
 				}
 			}
@@ -414,6 +553,66 @@ int main() {
 					col3 = nonmoving;
 				}
 			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col3 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col3 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col3 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
+					col3 = nonmoving;
+				}
+			}
 		}
 		else if (choice == 12) {
 			cout << "How many cards would you like to move?";
@@ -487,6 +686,66 @@ int main() {
 				col7 = deck->ColtoCol(moving, col7);
 				check = deck->CheckMovetoCol(moving, col7);
 				if (check) {
+					col4 = nonmoving;
+				}
+			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col4 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col4 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col4 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
 					col4 = nonmoving;
 				}
 			}
@@ -566,6 +825,66 @@ int main() {
 					col5 = nonmoving;
 				}
 			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col5 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col5 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col5 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
+					col5 = nonmoving;
+				}
+			}
 		}
 		else if (choice == 14) {
 			cout << "How many cards would you like to move?";
@@ -639,6 +958,66 @@ int main() {
 				col7 = deck->ColtoCol(moving, col7);
 				check = deck->CheckMovetoCol(moving, col7);
 				if (check) {
+					col6 = nonmoving;
+				}
+			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col6 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col6 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col6 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
 					col6 = nonmoving;
 				}
 			}
@@ -718,6 +1097,98 @@ int main() {
 					col7 = nonmoving;
 				}
 			}
+			else if (col == 8) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "C") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundClubs;
+				foundClubs = deck->addFound(moving.at(0), foundClubs);
+				if (foundClubs.size() > temp.size()) {
+					col7 = nonmoving;
+				}
+			}
+			else if (col == 9) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "D") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundDiamonds;
+				foundDiamonds = deck->addFound(moving.at(0), foundDiamonds);
+				if (foundDiamonds.size() > temp.size()) {
+					col7 = nonmoving;
+				}
+			}
+			else if (col == 10) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "S") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundSpades;
+				foundSpades = deck->addFound(moving.at(0), foundSpades);
+				if (foundSpades.size() > temp.size()) {
+					col7 = nonmoving;
+				}
+			}
+			else if (col == 11) {
+				if (moving.size() != 1) {
+					cout << "Can only move one card at a time!" << endl;
+					continue;
+				}
+				if (moving.at(0)->Suit() != "H") {
+					cout << "Incorrect foundation" << endl;
+					continue;
+				}
+				vector<Node*> temp = foundHearts;
+				foundHearts = deck->addFound(moving.at(0), foundHearts);
+				if (foundHearts.size() > temp.size()) {
+					col7 = nonmoving;
+				}
+			}
+		}
+		else if (choice == 16) {
+			if (deck->DCard()->Suit() != "C") {
+				cout << "Incorrect foundation" << endl;
+				continue;
+			}
+			foundClubs = deck->addFound(deck->DCard(), foundClubs);
+			deck = deck->RemoveCard(deck->DCard());
+		}
+		else if (choice == 17) {
+			if (deck->DCard()->Suit() != "D") {
+				cout << "Incorrect foundation" << endl;
+				continue;
+			}
+			foundDiamonds = deck->addFound(deck->DCard(), foundDiamonds);
+			deck = deck->RemoveCard(deck->DCard());
+		}
+		else if (choice == 18) {
+			if (deck->DCard()->Suit() != "S") {
+				cout << "Incorrect foundation" << endl;
+				continue;
+			}
+			foundSpades = deck->addFound(deck->DCard(), foundSpades);
+			deck = deck->RemoveCard(deck->DCard());
+		}
+		else if (choice == 19) {
+			if (deck->DCard()->Suit() != "H") {
+				cout << "Incorrect foundation" << endl;
+				continue;
+			}
+			foundHearts = deck->addFound(deck->DCard(), foundHearts);
+			deck = deck->RemoveCard(deck->DCard());
 		}
 		else {
 			break;
@@ -729,6 +1200,10 @@ int main() {
 		deck->turnOver(col5);
 		deck->turnOver(col6);
 		deck->turnOver(col7);
+		deck->PrintFound(foundClubs);
+		deck->PrintFound(foundDiamonds);
+		deck->PrintFound(foundSpades);
+		deck->PrintFound(foundHearts);
 		deck->PrintCol(col1, col2, col3, col4, col5, col6, col7);
 		deck->Print();
 

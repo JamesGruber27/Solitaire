@@ -40,11 +40,12 @@ public:
 	void turnOver(vector<Node*> tableau);
 	void Draw();
 	int Length();
-	void addFound(Node* card, vector<Node*> found);
+	vector<Node*> addFound(Node* card, vector<Node*> found);
 	Node* DCard() { return DrawnCard; }
 	List* RemoveCard(Node* card);
 	vector<Node*> ColtoCol(vector<Node*> moving, vector<Node*> adding);
 	bool CheckMovetoCol(vector<Node*> moving, vector<Node*> adding);
+	void PrintFound(vector<Node*> n);
 
 };
 
@@ -115,10 +116,13 @@ void List::Print() {
 //CREATE COLUMN - creates the columns
 vector<Node*> List::createColumn(int n) {
 
+
 	//Creates a vector that contains the Node pointers of specified size
 	Node* current = head;
 	vector<Node*> arr;
-
+	if (n == 0) {
+		return arr;
+	}
 	for (int i = 0; i < n; i++) {
 		if (i == n - 1) {
 			current->SetFaceup(true); //places the last card of each column faceup
@@ -417,11 +421,18 @@ int List::Length() {
 	return j;
 }
 
-void List::addFound(Node* card, vector<Node*> found) {
-	if (found.empty() && card->Num() == 1)
+vector<Node*> List::addFound(Node* card, vector<Node*> found) {
+	if (found.empty() && card->Num() == 1) {
 		found.push_back(card);
+		return found;
+	}
 	else if ((found.front()->Suit() == card->Suit()) && (card->Num() == found.back()->Num() + 1)) {
 		found.push_back(card);
+		return found;
+	}
+	else {
+		return found;
+		cout << "Invalid!" << endl;
 	}
 }
 
@@ -459,4 +470,27 @@ bool List::CheckMovetoCol(vector<Node*> moving, vector<Node*> adding) {
 		cout << "que";
 		return false;
 	}
+}
+
+void List::PrintFound(vector<Node*> n) {
+	for (int i = 0; i < n.size(); i++) {
+		if (n.at(i)->Num() == 1) {
+			cout << "A";
+		}
+		else if (n.at(i)->Num() == 11) {
+			cout << "J";
+		}
+		else if (n.at(i)->Num() == 12) {
+			cout << "Q";
+		}
+		else if (n.at(i)->Num() == 13) {
+			cout << "K";
+		}
+		else {
+			cout << n.at(i)->Num();
+		}
+		cout << n.at(i)->Suit();
+		cout << "\t";
+	}
+	cout << endl;
 }
